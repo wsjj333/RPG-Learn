@@ -71,3 +71,23 @@ snap -> END키 스냅은 액터를 땅바닥에 붙이는 키
 리타게터를 실행시키고 베이스로가서 루트가 아닌 Pevis나 Hips를 리타겟 루트로 설정
 
 spine, neck, leftarm, rightarm, leftleg, rightleg를 체인으로 설정(트위스트는 제외)
+
+입력
+---
+입력을 받기위해 입력-입력맵컨텍스트
+
+입력액션을 추가 값 타입을 Axix2D로 변경(앞뒤좌우)
+
+IMC컨트롤러에서 매핑을 WSAD는 W (스위즐 입력축값) S (Negate, 스위즐 입력 축 값) A (Negate) D (기본 입력값)
+
+인풋매핑-BP_Player
+
+![image](https://github.com/user-attachments/assets/5424328b-6851-4615-a94c-71a0d2f6dca4)
+
+Move-BP_Player
+
+![image](https://github.com/user-attachments/assets/1fb6c6a6-d291-4dcc-ade6-2c9e6170a48b)
+
+ABP_Player
+
+![image](https://github.com/user-attachments/assets/7d95d3bc-0bcd-48f5-898c-ed1377de6cf3)
