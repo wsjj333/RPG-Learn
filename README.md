@@ -1,6 +1,6 @@
 # RPG-Learn
 
-용어
+단축키
 ---
 snap -> END키 스냅은 액터를 땅바닥에 붙이는 키
 
@@ -41,6 +41,11 @@ snap -> END키 스냅은 액터를 땅바닥에 붙이는 키
   BP_player 이벤트그래프
   
   ![image](https://github.com/user-attachments/assets/73830d78-7730-492d-98eb-046bb25357b5)
+
+애니메이션 몽타주
+---
+해당 애니메이션 선택-생성-애닝몽타주 생성
+
 
 플레이어 만들기
 ---
@@ -91,3 +96,60 @@ Move-BP_Player
 ABP_Player
 
 ![image](https://github.com/user-attachments/assets/7d95d3bc-0bcd-48f5-898c-ed1377de6cf3)
+
+걷기(달리기)
+---
+
+![image](https://github.com/user-attachments/assets/00736d2c-da6e-49c4-82bd-b0c5fb3ec7b3)
+
+add Movement Input에 사이드 인풋과 포워드 인풋을 받아서 컨트롤 로켕리션을 움직인다.
+
+달리기는 IsRun 변수를 통해 분기를 나눠 X2를 해준다.
+
+Look
+---
+![image](https://github.com/user-attachments/assets/9aadedc4-a252-4878-b6a5-ad2f18345655)
+
+마우스의 X,Y의 값을 키 매핑으로 받아 마우스가 움직이는 대로 캐릭터가 볼 수 있도록한다.
+
+카메라 범위와 위치
+---
+![image](https://github.com/user-attachments/assets/7d2b1ec0-14a2-4d2e-ba1f-f8bb1e46c489)
+
+카메라 범위는 마우스 휠, 위치는 방향키로 매핑. IA에서 범위는 1D, 위치는 2D
+
+Jump
+---
+![image](https://github.com/user-attachments/assets/72fbaf30-1e33-4ada-a997-a9421017e2da)
+
+BP_Player만 아니라 ABP_Player에서의 애니메이션도 추가해줘야 한다. 하지만 점프 애니메이션의 착지 등과 같은 것이 없어서 제대로 구현 못했음.
+
+왼쪽 쉬프트키를 점프키로 키 매핑하고 하면된다.
+
+Crouch
+---
+![image](https://github.com/user-attachments/assets/e087e8cb-b98b-4e42-853d-cb1b228b6d05)
+
+BP_Player
+
+![image](https://github.com/user-attachments/assets/b816ee10-22b4-4f27-b17d-ae9bc49c5f54)
+
+ABP_Player - 애니메이션까지 설정해야 하기 때문에 ABP까지 건드린다. 
+
+Locomotion에서 Standing_TO_Crouched로 가는방향에는 Is_Crouch를 사용해서 들어가고, Standing_To_Crouched에서 Crouch는 스테이트의 시퀀스플레이어에 체크해준다.
+
+Crouch에서 Crouched_To_Standing으로는 IsCrouch 변수에 NotBool을 사용해서 체크하여 일어서며 Locomotion으로 갈때는 스테이트의 시퀀스 플레이어에 체크한다.
+
+Dodge
+---
+![image](https://github.com/user-attachments/assets/f34c3b51-e6e2-4720-9883-5a7581e2aaf1)
+
+해당 에니메이션에서 몽타주를 생성해주고 옆으로 움직임이 들어오고 IsDodge 상태가 아니면 닷지를 실행한다. 
+
+사이드 인풋이 0보다 크면 오른쪽, 작으면 왼쪽 움직임. 몽타주 정보에는 메쉬 정보가 필요함.
+
+블랜드 아웃 시, 중단 시에 IsDodge가 False가 되도록 설정하는 이유는 나중에 닷지 시간동안 무적기능을 넣을 때 완료시까지 하게되면 무적시간이 길어지기 때문이다.
+
+중단시는 몽타주 중간에 다른 애니메이션이 덮어써질 경우 회피를 취소해주어야 하기 때문.
+
+몽타주를 실행하기 위해서는 ABP_Player에서 AnimGraph에 Locomotion과 출력 포즈 사이에 몽타주 Defaultslot을 추가해준다.
