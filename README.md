@@ -153,3 +153,19 @@ Dodge
 중단시는 몽타주 중간에 다른 애니메이션이 덮어써질 경우 회피를 취소해주어야 하기 때문.
 
 몽타주를 실행하기 위해서는 ABP_Player에서 AnimGraph에 Locomotion과 출력 포즈 사이에 몽타주 Defaultslot을 추가해준다.
+
+Lyra 데이터이주
+---
+콘텐츠 브라우저에서 해당 폴더를 우클릭하고 이주 클릭 - 가져올 파일을 선택해서 이주할 프로젝트의 콘텐츠 선택
+
+가져올려고 하는 애니메이션 데이터의 스켈레톤이 다르면 해당 스켈레톤을 가져와서 리타게팅 진행
+
+Advanced Locomotion
+---
+시퀀스 매칭이 필요한 변수들 생성
+
+BP_Player의 캐릭터 무브먼트 최대가속과 감속걷기제동을 낮춰준다. 300과 100으로.(수정가능)
+
+애니메이션을 추가하기 전에 애니메이션창에 창-에니메이션 모디파이어를 클릭하고 모디파이어 추가에 DistanceCurveModifier와 SyncMarkerAnimModifier가 없을 경우 언리얼 기본화면에 우측상단 세팅에 플러그인에 모션을 검색하고 AnimationLocomotionLibary, Animation Warping, MotionWarping/을 켜준다.
+
+각각의 Distance 노드를 접근하기위해서 커브 압축세팅을 UniformIndexCurve로 설정해준다.
